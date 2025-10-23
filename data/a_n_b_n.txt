@@ -1,0 +1,19 @@
+# Ejemplo de una Máquina de Turing
+# Reconoce el lenguaje {a^n b^n | n >= 1}
+# Algoritmo: Marca alternativamente 'a's y 'b's hasta que todas estén marcadas
+q0 q1 q2 q3 q4
+a b
+a b X Y .
+q0
+.
+q4
+q0 a q1 X R
+q1 a q1 a R
+q1 Y q1 Y R
+q1 b q2 Y L
+q2 Y q2 Y L
+q2 a q2 a L
+q2 X q0 X R
+q0 Y q3 Y R
+q3 Y q3 Y R
+q3 . q4 . R

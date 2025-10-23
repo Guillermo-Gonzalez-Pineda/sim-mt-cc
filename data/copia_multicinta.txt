@@ -1,0 +1,32 @@
+MULTICINTA 2
+# Máquina de Turing multicinta que copia la entrada de la cinta 1 a la cinta 2
+# Acepta cualquier palabra del alfabeto {a,b}
+
+# Estados
+q0 q1 qaccept
+
+# Alfabeto de entrada
+a b
+
+# Alfabeto de la cinta
+a b .
+
+# Estado inicial
+q0
+
+# Símbolo blanco
+.
+
+# Estados de aceptación
+qaccept
+
+# Transiciones: estado_actual simbolos_leidos estado_siguiente simbolos_escritos movimientos
+
+# Copiar 'a' de cinta 1 a cinta 2
+q0 a,. q0 a,a R,R
+
+# Copiar 'b' de cinta 1 a cinta 2  
+q0 b,. q0 b,b R,R
+
+# Al llegar al final, aceptar
+q0 .,. qaccept .,. S,S

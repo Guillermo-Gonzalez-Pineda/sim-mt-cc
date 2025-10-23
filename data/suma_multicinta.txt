@@ -1,0 +1,30 @@
+# Ejemplo de Máquina de Turing Multicinta
+# Suma dos números en representación unaria
+# Entrada en cinta 1: 1^a 0 1^b (donde a y b son los números a sumar)
+# Resultado en cinta 2: 1^(a+b)
+# 
+# Formato multicinta:
+# MULTICINTA <num_cintas>
+# estados
+# alfabeto_entrada  
+# alfabeto_cinta
+# estado_inicial
+# símbolo_blanco
+# estados_aceptación
+# transiciones: estado símb1,símb2 estado_dest esc1,esc2 mov1,mov2
+
+MULTICINTA 2
+q0 q1 q2 q3 q4
+1 0
+1 0 .
+q0
+.
+q4
+q0 1,. q1 1,1 R,R
+q1 1,. q1 1,1 R,R
+q1 0,. q2 0,. R,S
+q2 1,. q2 .,1 R,R
+q2 .,. q3 .,. L,S
+q3 0,. q3 0,. L,S
+q3 1,. q3 1,. L,S
+q3 .,. q4 .,. S,S

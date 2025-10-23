@@ -1,0 +1,7 @@
+# Archivo con formato incorrecto - faltan estados
+0 1
+0 1 .
+q0
+.
+q1
+q0 0 q1 0 R

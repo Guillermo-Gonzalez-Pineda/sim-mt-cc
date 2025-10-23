@@ -1,0 +1,22 @@
+# Palabras de prueba para la máquina a^n b^n
+ab
+aabb
+aaabbb
+aaaabbbb
+aaaaabbbbb
+
+a
+abb  
+aab
+abbb
+aaabb
+aabbb
+# Casos negativos
+a
+b
+aa
+bb
+aab
+abb
+abab
+ba

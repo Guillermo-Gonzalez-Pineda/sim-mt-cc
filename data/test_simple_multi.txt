@@ -1,0 +1,9 @@
+MULTICINTA 2
+q0 qaccept qreject
+a b
+a b .
+q0
+.
+qaccept
+q0 a,. q0 a,a R,R
+q0 .,. qaccept .,. S,S

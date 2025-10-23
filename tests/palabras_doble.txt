@@ -1,0 +1,8 @@
+# Palabras de prueba para la máquina del doble del número
+# Cada palabra representa un número n como 1^n
+
+1
+11
+111
+1111
+11111

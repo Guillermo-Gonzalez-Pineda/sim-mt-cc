@@ -1,0 +1,20 @@
+# MT que reconoce L = {a^n b^m | m > n, n >= 1}
+# Algoritmo: Marca pares (a,b), verifica que quedan b's sin parear
+q0 q1 q2 q3 q4 q5
+a b
+a b X Y .
+q0
+.
+q5
+q0 a q1 X R
+q1 a q1 a R
+q1 Y q1 Y R
+q1 b q2 Y L
+q2 Y q2 Y L
+q2 a q2 a L
+q2 X q0 X R
+q0 Y q3 Y R
+q3 Y q3 Y R
+q3 b q4 b R
+q4 b q4 b R
+q4 . q5 . R

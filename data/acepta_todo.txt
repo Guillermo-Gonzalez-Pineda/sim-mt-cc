@@ -1,0 +1,12 @@
+# Ejemplo simple: Máquina de Turing que acepta cualquier cadena
+# Solo se mueve a la derecha hasta encontrar el símbolo blanco y acepta
+q0 q1
+a b c
+a b c .
+q0
+.
+q1
+q0 a q0 a R
+q0 b q0 b R
+q0 c q0 c R
+q0 . q1 . R
