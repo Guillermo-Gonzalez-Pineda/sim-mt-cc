@@ -240,6 +240,19 @@ int main(int argc, char** argv) {
       // Mostrar el resultado
       std::cout << Simulator::result_to_string(result) << "\n";
       
+      // Mostrar el estado final de la cinta/cintas
+      if (is_multi_tape) {
+        const auto& config = multi_simulator->get_current_configuration();
+        const auto& tapes = config.get_tapes();
+        std::cout << "Cintas finales:\n";
+        for (size_t i = 0; i < tapes.get_num_tapes(); ++i) {
+          std::cout << "  Cinta " << (i+1) << ": " << tapes.get_tape(i).to_string(20) << "\n";
+        }
+      } else {
+        const auto& config = simulator->get_current_configuration();
+        std::cout << "Cinta final: " << config.get_tape().to_string(20) << "\n";
+      }
+      
       // Si está habilitada la traza, mostrarla
       if (trace) {
         std::cout << "\n=== Traza de ejecución para \"" << word << "\" ===\n";

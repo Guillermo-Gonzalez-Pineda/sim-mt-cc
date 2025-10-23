@@ -1,0 +1,12 @@
+# MT MULTICINTA con ERROR: símbolo blanco no en alfabeto de cinta
+# El blanco es 'X' pero no está en el alfabeto de cinta
+MULTICINTA 2
+q0 q1 qaccept qreject
+a b
+a b .
+q0
+X
+qaccept
+q0 a,X q1 a,a R,R
+q1 a,X q1 a,a R,R
+q1 b,X qaccept b,b S,S

@@ -151,6 +151,13 @@ bool Parser::load_from_stream(std::istream& input, TuringMachine& machine) {
           if (tokens.size() != 1) {
             throw std::invalid_argument("Línea " + std::to_string(line_number) + ": Debe haber exactamente un estado inicial");
           }
+          // Validar que el estado inicial está en el conjunto de estados ANTES de asignarlo
+          const auto& states = machine.get_states();
+          if (states.find(tokens[0]) == states.end()) {
+            throw std::invalid_argument("Línea " + std::to_string(line_number) + 
+                                       ": El estado inicial '" + tokens[0] + 
+                                       "' no está declarado en el conjunto de estados");
+          }
           machine.set_initial_state(tokens[0]);
           section++;
           break;
@@ -162,6 +169,13 @@ bool Parser::load_from_stream(std::istream& input, TuringMachine& machine) {
             throw std::invalid_argument("Línea " + std::to_string(line_number) + ": Debe haber exactamente un símbolo blanco");
           }
           char blank_symbol = string_to_char(tokens[0], "símbolo blanco (línea " + std::to_string(line_number) + ")");
+          // Validar que el símbolo blanco está en el alfabeto de cinta ANTES de asignarlo
+          const auto& tape_alphabet = machine.get_tape_alphabet();
+          if (tape_alphabet.find(blank_symbol) == tape_alphabet.end()) {
+            throw std::invalid_argument("Línea " + std::to_string(line_number) + 
+                                       ": El símbolo blanco '" + std::string(1, blank_symbol) + 
+                                       "' no pertenece al alfabeto de la cinta");
+          }
           machine.set_blank_symbol(blank_symbol);
           section++;
           break;
@@ -383,6 +397,13 @@ bool Parser::load_multi_from_file(const std::string& filename, MultiTuringMachin
           if (tokens.size() != 1) {
             throw std::invalid_argument("Línea " + std::to_string(line_number) + ": Debe haber exactamente un estado inicial");
           }
+          // Validar que el estado inicial está en el conjunto de estados ANTES de asignarlo
+          const auto& states = machine.get_states();
+          if (states.find(tokens[0]) == states.end()) {
+            throw std::invalid_argument("Línea " + std::to_string(line_number) + 
+                                       ": El estado inicial '" + tokens[0] + 
+                                       "' no está declarado en el conjunto de estados");
+          }
           machine.set_initial_state(tokens[0]);
           section++;
           break;
@@ -394,6 +415,13 @@ bool Parser::load_multi_from_file(const std::string& filename, MultiTuringMachin
             throw std::invalid_argument("Línea " + std::to_string(line_number) + ": Debe haber exactamente un símbolo blanco");
           }
           char blank_symbol = string_to_char(tokens[0], "símbolo blanco (línea " + std::to_string(line_number) + ")");
+          // Validar que el símbolo blanco está en el alfabeto de cinta ANTES de asignarlo
+          const auto& tape_alphabet = machine.get_tape_alphabet();
+          if (tape_alphabet.find(blank_symbol) == tape_alphabet.end()) {
+            throw std::invalid_argument("Línea " + std::to_string(line_number) + 
+                                       ": El símbolo blanco '" + std::string(1, blank_symbol) + 
+                                       "' no pertenece al alfabeto de la cinta");
+          }
           machine.set_blank_symbol(blank_symbol);
           section++;
           break;

@@ -1,0 +1,14 @@
+# MT con ERROR: símbolo blanco no incluido en alfabeto de cinta
+# El blanco es 'Z' pero el alfabeto de cinta solo tiene a b X Y (falta Z)
+q0 q1 q2 qaccept qreject
+a b
+a b X Y .
+q0
+Z
+qaccept
+q0 a q1 X R
+q1 a q1 a R
+q1 b q2 Y L
+q2 a q2 a L
+q2 X q0 X R
+q0 Y qaccept Y R

@@ -1,0 +1,14 @@
+# MT con ERROR: movimiento inválido 'X' en vez de L, R o S
+# Una transición usa 'X' como dirección de movimiento
+q0 q1 q2 qaccept qreject
+a b
+a b X Y .
+q0
+.
+qaccept
+q0 a q1 X R
+q1 a q1 a X
+q1 b q2 Y L
+q2 a q2 a L
+q2 X q0 X R
+q0 Y qaccept Y R

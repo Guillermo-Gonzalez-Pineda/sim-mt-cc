@@ -1,0 +1,14 @@
+# MT con ERROR: estado inicial no incluido en conjunto de estados
+# El estado inicial es 'qInicial' pero no está en la lista de estados
+q0 q1 q2 qaccept qreject
+a b
+a b X Y .
+qInicial
+.
+qaccept
+q0 a q1 X R
+q1 a q1 a R
+q1 b q2 Y L
+q2 a q2 a L
+q2 X q0 X R
+q0 Y qaccept Y R
