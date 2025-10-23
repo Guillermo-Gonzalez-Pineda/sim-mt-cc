@@ -1,6 +1,6 @@
 # Simulador de Máquina de Turing (Monocinta y Multicinta)
 
-Este proyecto implementa un simulador completo de Máquinas de Turing en C++ que soporta tanto **máquinas monocinta** como **máquinas multicinta**, siguiendo principios de programación orientada a objetos y las mejores prácticas de desarrollo.
+Este proyecto implementa un simulador completo de Máquinas de Turing en C++ que soporta tanto **máquinas monocinta** como **máquinas multicinta**, siguiendo principios de programación orientada a objetos.
 
 ## Estructura del Proyecto
 
@@ -31,8 +31,12 @@ MaquinaTuring/
 - **Cintas Infinitas**: Implementación eficiente usando mapa disperso
 - **Detección de Bucles**: Identifica bucles infinitos por configuraciones repetidas
 - **Trazas de Ejecución**: Visualización paso a paso de la simulación
+- **Visualización de Cintas Finales**: Muestra automáticamente el estado de las cintas al terminar cada simulación
 - **Formato Estándar**: Compatible con formatos de archivos de definición estándar
-- **Validación Completa**: Verificación de máquinas y palabras de entrada
+- **Validación Exhaustiva**: Verificación estricta de definiciones de máquinas
+  - Detecta si el estado inicial no está declarado en el conjunto de estados
+  - Detecta si el símbolo blanco no está en el alfabeto de cinta
+  - Valida símbolos en transiciones y palabras de entrada
 - **Interfaz de Línea de Comandos**: Similar a herramientas académicas estándar
 - **Conversión Automática**: Puede convertir máquinas monocinta a multicinta
 
@@ -80,10 +84,10 @@ make info
 
 ```bash
 # Simular con entrada desde teclado
-echo "101" | ./build/mt-sim data/cadenas_impar_ceros.txt
+./build/mt-sim data/cadenas_impar_ceros.txt
 
 # Simular con traza habilitada
-echo "101" | ./build/mt-sim data/cadenas_impar_ceros.txt --trace
+./build/mt-sim data/cadenas_impar_ceros.txt --trace
 
 # Procesar múltiples palabras desde archivo
 ./build/mt-sim data/cadenas_impar_ceros.txt --words tests/palabras_impar_ceros.txt
@@ -93,6 +97,12 @@ echo "101" | ./build/mt-sim data/cadenas_impar_ceros.txt --trace
 
 # Modo estricto con límite de pasos
 ./build/mt-sim data/doble_numero.txt --strict --max-steps 100
+
+# Ver el estado final de la cinta después de procesar
+echo "111" | ./build/mt-sim data/doble_numero.txt
+# Output:
+# ACCEPT
+# Cinta final: . . . . [1] 1 1 1 1 1 . . . .
 ```
 
 ## Formato de Archivos de Definición
@@ -194,13 +204,57 @@ Suma dos números en representación unaria usando 2 cintas.
 - **Salida**: "111111" (6) en cinta 2
 - **Alfabeto**: {1, 0}
 
+### 6. `anbn_multicinta.txt`
+Reconoce el lenguaje {a^n b^n | n ≥ 1} usando 2 cintas.
+- **Alfabeto**: {a, b}
+- **Ejemplo**: "aabb" → ACCEPT (verifica con 2 cintas)
+
+### 7. `copia_multicinta.txt`
+Copia el contenido de la cinta 1 a la cinta 2.
+- **Entrada**: cualquier palabra en cinta 1
+- **Salida**: palabra copiada en cinta 2
+
+## Archivos de Error de Prueba
+
+El proyecto incluye archivos de ejemplo con errores intencionales para probar la validación:
+
+- **`error1_mt.txt`**: Estado inicial 'qInicial' no declarado en el conjunto de estados
+- **`error2_mt.txt`**: Símbolo blanco 'Z' no incluido en el alfabeto de cinta
+- **`error3_multicinta.txt`**: Error de estado inicial en máquina multicinta
+- **`error4_multicinta.txt`**: Error de símbolo blanco en máquina multicinta
+
+Estos archivos permiten verificar que el parser detecta correctamente configuraciones inválidas.
+
 
 ## Resultados de Simulación
 
+El simulador muestra dos tipos de información al procesar cada palabra:
+
+### Resultado de Aceptación
 - **ACCEPT**: La palabra fue aceptada por la máquina
 - **REJECT**: La palabra fue rechazada
 - **INFINITE**: Bucle infinito detectado o límite de pasos alcanzado
 - **ERROR**: Error durante la simulación
+
+### Visualización de Cintas Finales
+
+Después de cada resultado, el simulador muestra automáticamente el estado final de las cintas:
+
+**Para máquinas monocinta:**
+```
+ACCEPT
+Cinta final: . . . X X Y Y [.] . . .
+```
+
+**Para máquinas multicinta:**
+```
+ACCEPT
+Cintas finales:
+  Cinta 1: . . a a b b [.] . .
+  Cinta 2: . . . . . . [.] . .
+```
+
+Los corchetes `[símbolo]` indican la posición actual del cabezal de lectura/escritura.
 
 ## Detección de Bucles Infinitos
 
