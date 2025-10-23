@@ -194,20 +194,6 @@ Suma dos números en representación unaria usando 2 cintas.
 - **Salida**: "111111" (6) en cinta 2
 - **Alfabeto**: {1, 0}
 
-## Pruebas
-
-El proyecto incluye archivos de prueba para validar las implementaciones:
-
-```bash
-# Ejecutar pruebas básicas
-make test
-
-# Ejecutar prueba con traza
-make test-trace
-
-# Mostrar información de máquina de ejemplo
-make show-info
-```
 
 ## Resultados de Simulación
 
@@ -249,27 +235,7 @@ El simulador detecta bucles infinitos mediante dos mecanismos:
 - Documentación estilo Doxygen
 - Código legible y mantenible
 
-## Instalación del Sistema
-
-```bash
-# Instalar en /usr/local/bin (requiere permisos de administrador)
-sudo make install
-
-# Desinstalar
-sudo make uninstall
-```
-
-## Creación de Distribución
-
-```bash
-# Crear archivo tar.gz con el proyecto
-make dist
-```
-
-## Contribución
-
-Este proyecto está diseñado para fines académicos siguiendo las mejores prácticas de desarrollo de software. El código está comentado en español y sigue el estilo de Google C++ (excepto el límite de 80 columnas).
 
 ## Autor
 
-Proyecto desarrollado para la asignatura de Complejidad Computacional.
+Guillermo González Pineda
